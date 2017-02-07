@@ -14,6 +14,7 @@
 * 跨模块调用静态资源和VM模板
 * 共享UI组件库及通用业务模块
 * UI组件库更新CDN单独发布
+* 代理功能
 
 ## 安装
 1.安装nodejs
@@ -49,4 +50,18 @@ fisc release -d ../output
 fisc server start
 // 指定8090端口
 fisc server start -p 8090
+```
+
+## 设置代理
+```
+fisc proxy --pxhost 10.252.56.121 --pxport 8080 --pxlisten 8090
+// 参数含义
+--pxhost 代理的host
+--pxport 代理的端口
+--pxlisten 代理服务器的端口
+
+// 上面命令解析
+代理服务器：127.0.0.1:8090
+代理的地址-------10.252.56.121
+代理的端口-------8080
 ```

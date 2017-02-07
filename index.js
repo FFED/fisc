@@ -26,7 +26,7 @@ fis.set('statics', '/static');
 fis.set('templates', '/WEB-INF/views');
 
 // 默认指定 jello 服务器
-fis.set('server.type', 'jello');
+fis.require('jello')(fis);
 
 /**
  * 挂载 commonJs 模块化插件,
