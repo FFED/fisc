@@ -28,18 +28,18 @@ cli.launch({
 	// 启动代理服务器
 	if(proxyIndex !== -1) {
 		var proxy = require('./proxy.js'),
-				pxhost = argv.pxhost || '127.0.0.1',
-				pxport = argv.pxport || '8080',
-				pxlisten = argv.pxlisten || '8090';
+			proxyConfig = require(path.join(env.cwd, 'proxyConfig.json'));
 
 
 		console.log('--------启动代理服务器-----------');
-		console.log( '代理服务器：' + '127.0.0.1:' + pxlisten );
-		console.log( '代理的地址' + '-------' + pxhost );
-		console.log( '代理的端口' + '-------' + pxport );
+		console.log( '代理服务器：' + '127.0.0.1:' + proxyConfig.pxlisten );
+		console.log( '代理page的地址' + '-------' + proxyConfig.pxhostPage );
+		console.log( '代理page的端口' + '-------' + proxyConfig.pxportPage );
+		console.log( '代理api的地址' + '-------' + proxyConfig.pxhostApi );
+		console.log( '代理api的端口' + '-------' + proxyConfig.pxportApi );
 
 
-		proxy(pxhost, pxport ,pxlisten);
+		proxy(proxyConfig.pxhostPage, proxyConfig.pxportPage, proxyConfig.pxhostApi, proxyConfig.pxportApi, proxyConfig.pxlisten);
 
 		// 移除proxy信息，否则fis命令会报错
 		argv["_"].splice(proxyIndex, 1);

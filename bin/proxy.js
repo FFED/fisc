@@ -1,22 +1,46 @@
-module.exports = function(pxhost, pxport, pxlisten) {
-    var http=require('http');
-    var url=require('url');
-    var server=http.createServer(function(sreq,sres){
-        var url_parts=url.parse(sreq.url);
-        var headers = sreq.headers;
-        headers.host = pxhost || '127.0.0.1';
-        var opts={
-            port: pxport || 8080,
-            host: pxhost || '127.0.0.1',
+module.exports = function(pxhostPage, pxportPage, pxhostApi, pxportApi, pxlisten) {
+    var http = require('http'),
+            url = require('url');
+
+    var server = http.createServer(function(req,res) {
+        var url_parts = url.parse(req.url),
+                headers = req.headers,
+                opts, pxReq1, pxReq2;
+
+        headers.host = pxhostPage || '127.0.0.1';
+        opts = {
+            port: pxportPage || 8080,
+            host: pxhostPage || '127.0.0.1',
             path:url_parts.pathname,
             headers:headers,
-            method: sreq.method
+            method: req.method
         };
-        var creq=http.request(opts,function(cres){
-            sres.writeHead(cres.statusCode,cres.headers);
-            cres.pipe(sres);
+        pxReq1 = http.request(opts, function(pxRes1) {
+            if(pxRes1.statusCode != '404') {
+                res.writeHead(pxRes1.statusCode, pxRes1.headers);
+                pxRes1.pipe(res);
+            } else {
+                opts.port = pxportApi;
+                opts.host = pxhostApi;
+
+                pxReq2 = http.request(opts, function(pxRes2) {
+                    res.writeHead(pxRes2.statusCode, pxRes2.headers);
+                    pxRes2.pipe(res);
+                }).on('error', function(err) {
+                    console.log('no find or server error');
+                    res.end('no find or server error');
+                });
+
+
+                req.pipe(pxReq2);
+            }
+
+        }).on('error', function(err) {
+            console.log('server error');
+            res.end('server error');
         });
-        sreq.pipe(creq);
+
+        req.pipe(pxReq1);
     });
     server.listen(pxlisten || 8090);
 }

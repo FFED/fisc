@@ -54,14 +54,19 @@ fisc server start -p 8090
 
 ## 设置代理
 ```
-fisc proxy --pxhost 10.252.56.121 --pxport 8080 --pxlisten 8090
-// 参数含义
---pxhost 代理的host
---pxport 代理的端口
---pxlisten 代理服务器的端口
+fisc proxy
 
-// 上面命令解析
-代理服务器：127.0.0.1:8090
-代理的地址-------10.252.56.121
-代理的端口-------8080
-```
+在编译目录下面添加proxyConfig.json文件，进行代理配置，内容如下:
+{
+	"pxhostPage": "127.0.0.1",
+	"pxportPage": "8080",
+	"pxhostApi": "127.0.0.1",
+	"pxportApi": "9090",
+	"pxlisten": "8090"
+}
+// 参数含义
+--pxhostPage 代理page的host
+--pxportPage 代理page的端口
+--pxhostApi 代理api的host
+--pxportApi 代理api的端口
+--pxlisten 代理服务器的端口
