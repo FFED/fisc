@@ -1,6 +1,13 @@
-module.exports = function(pxhostPage, pxportPage, pxhostApi, pxportApi, pxlisten) {
+module.exports = function(proxyConfig) {
     var http = require('http'),
-            url = require('url');
+            url = require('url'),
+            {
+                pxlisten,
+                pxhostPage,
+                pxportPage,
+                pxhostApi,
+                pxportApi
+            } = proxyConfig;
 
     var server = http.createServer(function(req,res) {
         var url_parts = url.parse(req.url),

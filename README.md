@@ -54,9 +54,15 @@ fisc server start -p 8090
 
 ## 设置代理
 ```
-fisc proxy
+// 运行命令
+fisc proxy  // 默认运行proxyConfig.json配置文件
+或 fisc proxy --pxConf pxCC // 运行pxCC.json配置文件
 
-在编译目录下面添加proxyConfig.json文件，进行代理配置，内容如下:
+在编译目录下面添加代理配置的json文件，进行代理配置；
+默认文件名为：proxyConfig.json；
+也可以通过--pxConf [fileName]运行自定义配置文件（注意：这里不需要文件后缀）
+配置信息内容如下:
+
 {
 	"pxhostPage": "127.0.0.1",
 	"pxportPage": "8080",

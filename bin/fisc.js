@@ -28,24 +28,29 @@ cli.launch({
 	// 启动代理服务器
 	if(proxyIndex !== -1) {
 		var proxy = require('./proxy.js'),
-			proxyConfig = require(path.join(env.cwd, 'proxyConfig.json'));
+				proxyConfig = require(path.join(env.cwd, (argv.pxConf ? argv.pxConf : 'proxyConfig') + '.json')),
+				{
+						pxlisten,
+						pxhostPage,
+						pxportPage,
+						pxhostApi,
+						pxportApi
+				} = proxyConfig;
 
 
 		console.log('--------启动代理服务器-----------');
-		console.log( '代理服务器：' + '127.0.0.1:' + proxyConfig.pxlisten );
-		console.log( '代理page的地址' + '-------' + proxyConfig.pxhostPage );
-		console.log( '代理page的端口' + '-------' + proxyConfig.pxportPage );
-		console.log( '代理api的地址' + '-------' + proxyConfig.pxhostApi );
-		console.log( '代理api的端口' + '-------' + proxyConfig.pxportApi );
+		console.log( '代理服务器：' + '127.0.0.1:' + pxlisten );
+		console.log( '代理page的地址' + '-------' + pxhostPage );
+		console.log( '代理page的端口' + '-------' + pxportPage );
+		console.log( '代理api的地址' + '-------' + pxhostApi );
+		console.log( '代理api的端口' + '-------' + pxportApi );
 
 
-		proxy(proxyConfig.pxhostPage, proxyConfig.pxportPage, proxyConfig.pxhostApi, proxyConfig.pxportApi, proxyConfig.pxlisten);
+		proxy(proxyConfig);
 
 		// 移除proxy信息，否则fis命令会报错
 		argv["_"].splice(proxyIndex, 1);
-		delete argv.pxhost;
-		delete argv.pxport;
-		delete argv.pxlisten;
+		delete argv.pxConf;
 	}
 
 	// fis命令
