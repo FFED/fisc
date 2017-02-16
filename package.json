@@ -1,6 +1,6 @@
 {
   "name": "fisc",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "fisc fis3 jello",
   "main": "index.js",
   "bin": {

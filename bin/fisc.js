@@ -28,14 +28,15 @@ cli.launch({
 	// 启动代理服务器
 	if(proxyIndex !== -1) {
 		var proxy = require('./proxy.js'),
-				proxyConfig = require(path.join(env.cwd, (argv.pxConf ? argv.pxConf : 'proxyConfig') + '.json')),
-				{
-						pxlisten,
-						pxhostPage,
-						pxportPage,
-						pxhostApi,
-						pxportApi
-				} = proxyConfig;
+			proxyConfig = require(path.join(env.cwd,
+					(argv.pxConf ? argv.pxConf : 'proxyConfig') + '.json')),
+			{
+				pxlisten,
+				pxhostPage,
+				pxportPage,
+				pxhostApi,
+				pxportApi
+			} = proxyConfig;
 
 
 		console.log('--------启动代理服务器-----------');

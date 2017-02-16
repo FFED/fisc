@@ -1,5 +1,5 @@
 # fisc
-## copy：https://github.com/zuojj/fis3-arrow
+
 基于fis3+Velocity的前端解决方案
 
 ## 特性及优势
