@@ -1,6 +1,6 @@
 {
   "name": "fisc",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "fisc fis3 jello",
   "main": "index.js",
   "bin": {
@@ -25,7 +25,6 @@
   "dependencies": {
     "fis-parser-marked": "0.0.6",
     "fis-parser-node-sass": "~1.0.1",
-    "fis-parser-utc": "0.0.2",
     "fis3": "~3.4.31",
     "fis3-command-server": "~0.0.9",
     "fis3-hook-commonjs": "~0.1.25",
@@ -35,7 +34,9 @@
     "fis3-jello": "~1.0.2",
     "fisp-command-init": "~0.1.1",
     "liftoff": "2.3.0",
-    "minimist": "1.2.0"
+    "minimist": "1.2.0",
+    "fis3-parser-babel": "^1.2.4",
+    "fis3-parser-tmpl": "^0.1.0"
   },
   "homepage": "https://github.com/FFED/fisc#readme"
 }

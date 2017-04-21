@@ -32,8 +32,11 @@ fis.require('jello')(fis);
  * 挂载 commonJs 模块化插件,
  * 如果要使用 amd 方案，请先执行fis.unhook('commonjs');然后再执行fis.hook('amd');
  * 注意：多个模块化方案插件不能共用。
+ * extList默认为 ['.js', '.coffee', '.jsx', '.es6']当引用模块时没有指定后缀，该插件会尝试这些后缀。
  */
-fis.hook('commonjs');
+fis.hook('commonjs', {
+	extList: ['.js', '.coffee', '.jsx', '.es']
+});
 
 fis
 
@@ -42,11 +45,18 @@ fis
 	rExt: '.css'
 }, weight)
 
-// 对 tmpl 文件，默认采用 utc 插件转换成 js 函数。
+// 对 tmpl 文件，默认采用 fis3-parser-tmpl 插件转换成 js 函数。
 .match('*.tmpl', {
-	parser: fis.plugin('utc'),
+	parser: fis.plugin('tmpl'),
 	rExt: '.js'
 }, weight)
+
+// 对使用es6语法的文件，默认用 babel 插件转换成es5
+.match('*.es', {
+    parser: fis.plugin('babel'),
+    isMod: true,
+    rExt: '.js'
+})
 
 // 对 vm 和 jsp 进行语言识别。
 .match('*.{vm,jsp}', {
