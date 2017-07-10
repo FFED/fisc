@@ -152,7 +152,7 @@ fis
 // 在 prod 环境下，开启各种压缩和打包。
 fis.media('prod')
 
-		.match('*.js', {
+		.match('*.{js, es}', {
 			useHash: true,
 			optimizer: fis.plugin('uglify-js')
 		}, weight)
