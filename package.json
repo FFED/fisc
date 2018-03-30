@@ -31,7 +31,7 @@
     "fis3-packager-deps-pack": "~0.1.2",
     "fis3-postpackager-arrow-loader": "^1.0.0",
     "fis3-preprocessor-extlang": "1.1.9",
-    "fis3-jello": "~1.0.2",
+    "fis3-jello": "1.0.2",
     "fisp-command-init": "~0.1.1",
     "liftoff": "2.3.0",
     "minimist": "1.2.0",
