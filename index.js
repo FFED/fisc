@@ -5,6 +5,8 @@ var path = require('path');
 
 var fis = module.exports = require('fis3');
 
+fis.project.setProjectRoot(fis.util.realpath(path.join(__dirname, '')));
+
 fis.cli.name = "fisc";
 
 fis.cli.info = fis.util.readJSON(__dirname + '/package.json');
